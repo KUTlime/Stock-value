@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Application\Kutlime.StockValue.Application\Kutlime.StockValue.Application.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Kutlime.StockValue.Infrastructure\Kutlime.StockValue.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>
