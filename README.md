@@ -1,4 +1,4 @@
-# Stock-value
+# Stock value
 
 > A minimal, non-synthetic, clean architecture, modern C# 9.0 syntax, feature rich demo application for checking stock prices.
 
@@ -11,6 +11,7 @@
 * Factory design pattern without violation of the Inversion of Control principle
 * Dependency injection
 * Proper use of nested classes
+* Nullable annotation for custom functions
 
 ## FAQ
 
