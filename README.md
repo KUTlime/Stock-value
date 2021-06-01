@@ -29,7 +29,7 @@ These classes represents API-provider contract. This is an implementation detail
 
 ### Why the factory method use string rather then enum?
 
-Use an enum is a violation of Inversion of Control principle. You can't deploy the presentation layer without redeploying the application layer. To fulfil this principle, one must pass an abstract object (e.g. `string`). Yes, this is a violation of type safety but this trade off could be compensate by unit testing.
+The use of enum is a violation of Inversion of Control principle. You can't deploy the presentation layer without redeploying the application layer. To fulfil this principle, one must pass an abstract object (e.g. `string`). Yes, this is a violation of type safety but this trade off could be compensate by unit testing.
 
 ## Planned features
 
