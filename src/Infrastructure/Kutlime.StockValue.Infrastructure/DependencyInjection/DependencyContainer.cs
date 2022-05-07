@@ -2,29 +2,28 @@
 using Kutlime.StockValue.Application.Services.Finnhub;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Kutlime.StockValue.Infrastructure.DependencyInjection
+namespace Kutlime.StockValue.Infrastructure.DependencyInjection;
+
+public class DependencyContainer : IContainer
 {
-	public class DependencyContainer : IContainer
+	private static void RegisterFinnhubServices(IServiceCollection services)
 	{
-		private static void RegisterFinnhubServices(IServiceCollection services)
+		services.AddScoped<IHttpClient, FinnhubHttpClient>();
+		services.AddScoped<IStockProvider, FinnhubStockService>();
+		services.AddScoped<IStockNameProvider, FinnhubStockNameService>();
+		services.AddScoped<IToken, FinnhubTokenId>();
+	}
+
+	public IServiceCollection GetService(string serviceProvider)
+	{
+		IServiceCollection services = new ServiceCollection();
+		switch (serviceProvider)
 		{
-			services.AddScoped<IHttpClient, FinnhubHttpClient>();
-			services.AddScoped<IStockProvider, FinnhubStockService>();
-			services.AddScoped<IStockNameProvider, FinnhubStockNameService>();
-			services.AddScoped<IToken, FinnhubTokenId>();
+			case "Finnhub":
+				RegisterFinnhubServices(services);
+				break;
 		}
 
-		public IServiceCollection GetService(string serviceProvider)
-		{
-			IServiceCollection services = new ServiceCollection();
-			switch (serviceProvider)
-			{
-				case "Finnhub":
-					RegisterFinnhubServices(services);
-					break;
-			}
-
-			return services;
-		}
+		return services;
 	}
 }

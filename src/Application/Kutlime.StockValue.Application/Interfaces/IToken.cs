@@ -1,7 +1,6 @@
-﻿namespace Kutlime.StockValue.Application.Interfaces
+﻿namespace Kutlime.StockValue.Application.Interfaces;
+
+public interface IToken
 {
-	public interface IToken
-	{
-		string TokenId { get; }
-	}
+	string TokenId { get; }
 }

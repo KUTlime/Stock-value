@@ -1,10 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Kutlime.StockValue.Application.Interfaces
+namespace Kutlime.StockValue.Application.Interfaces;
+
+public interface IHttpClient
 {
-	public interface IHttpClient
-	{
-		public Task<string> GetStringAsync(string uri, CancellationToken token);
-	}
+	public Task<string> GetStringAsync(string uri, CancellationToken token);
 }

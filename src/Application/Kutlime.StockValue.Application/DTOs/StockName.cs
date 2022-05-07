@@ -1,4 +1,3 @@
-﻿namespace Kutlime.StockValue.Application.DTOs
-{
-	public record StockName(string Name, string Abbreviation);
-}
+﻿namespace Kutlime.StockValue.Application.DTOs;
+
+public record StockName(string Name, string Abbreviation);

@@ -1,4 +1,3 @@
-﻿namespace Kutlime.StockValue.Domain
-{
-	public record Stock(StockName StockName, StockPrice StockPrice);
-}
+﻿namespace Kutlime.StockValue.Domain;
+
+public record Stock(StockName StockName, StockPrice StockPrice);

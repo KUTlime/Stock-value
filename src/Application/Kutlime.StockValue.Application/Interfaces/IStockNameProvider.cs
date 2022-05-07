@@ -2,10 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Kutlime.StockValue.Application.Interfaces
+namespace Kutlime.StockValue.Application.Interfaces;
+
+public interface IStockNameProvider
 {
-	public interface IStockNameProvider
-	{
-		Task<StockName> GetStockName(string stockId, CancellationToken token);
-	}
+	Task<StockName> GetStockName(string stockId, CancellationToken token);
 }
