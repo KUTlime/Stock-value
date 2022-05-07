@@ -1,7 +1,5 @@
-﻿using Kutlime.StockValue.Application;
-using Kutlime.StockValue.Application.DTOs;
+﻿using Kutlime.StockValue.Application.DTOs;
 using Kutlime.StockValue.Application.Interfaces;
-using Kutlime.StockValue.Application.Services.Finnhub;
 using Kutlime.StockValue.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using System;

@@ -1,4 +1,6 @@
-﻿using Kutlime.StockValue.Infrastructure.DependencyInjection;
+﻿#pragma warning disable IDE0005
+using Kutlime.StockValue.Infrastructure.DependencyInjection;
+#pragma warning restore IDE0005
 
 namespace Kutlime.StockValue.DependencyInjection;
 
