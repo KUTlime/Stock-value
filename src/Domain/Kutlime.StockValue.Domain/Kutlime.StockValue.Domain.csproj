@@ -4,6 +4,7 @@
 		<Nullable>enable</Nullable>
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>default</LangVersion>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
 
 </Project>
