@@ -167,3 +167,5 @@ csharp_preserve_single_line_blocks = true
 # Namespace organization
 csharp_style_namespace_declarations = file_scoped
 dotnet_diagnostic.IDE0161.severity = error
+# Remove unnecessary import https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0005
+dotnet_diagnostic.IDE0005.severity = error
