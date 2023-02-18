@@ -1,17 +1,18 @@
 # Stock value
 
-> A minimal, non-synthetic, clean architecture, modern C# 10.0 syntax, feature rich demo application for checking stock prices.
+> A minimal, non-synthetic, clean architecture, modern C# 11.0 syntax, feature rich demo application for checking stock prices.
 
 ## Features
 
 * Clean architecture
 * Clean code (WIP)
 * **Records**
-* C# 10.0 syntax
+* C# 11.0 syntax
 * Factory design pattern without violation of the Inversion of Control principle
 * Dependency injection
 * Proper use of nested classes
 * Nullable annotation for custom functions
+* Closely reviewed `.editorconfig` for modern, compact syntax
 
 ## FAQ
 
