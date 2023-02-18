@@ -1,12 +1,10 @@
 ﻿using Kutlime.StockValue.Application.Interfaces;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Kutlime.StockValue.Application.Services.Finnhub;
 
 public class FinnhubHttpClient : IHttpClient
 {
-	private readonly HttpClient _client = new();
-	public async Task<string> GetStringAsync(string uri, CancellationToken token) => await _client.GetStringAsync(uri, token);
+    private readonly HttpClient _client = new();
+
+    public async Task<string> GetStringAsync(string uri, CancellationToken token) => await _client.GetStringAsync(uri, token);
 }

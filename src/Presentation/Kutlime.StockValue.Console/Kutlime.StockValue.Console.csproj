@@ -4,8 +4,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\Kutlime.StockValue.Application\Kutlime.StockValue.Application.csproj" />
-    <ProjectReference Include="..\..\CrossConcerns\Kutlime.StockValue.DependencyInjection\Kutlime.StockValue.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\Application\Kutlime.StockValue.Application\Kutlime.StockValue.Application.csproj"/>
+    <ProjectReference Include="..\..\CrossConcerns\Kutlime.StockValue.DependencyInjection\Kutlime.StockValue.DependencyInjection.csproj"/>
   </ItemGroup>
 
 </Project>

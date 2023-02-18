@@ -2,5 +2,5 @@
 
 public interface IToken
 {
-	string TokenId { get; }
+    string TokenId { get; }
 }

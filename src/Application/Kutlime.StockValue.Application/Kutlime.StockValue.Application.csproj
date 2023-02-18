@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-	</PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\..\Domain\Kutlime.StockValue.Domain\Kutlime.StockValue.Domain.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Kutlime.StockValue.Domain\Kutlime.StockValue.Domain.csproj"/>
+  </ItemGroup>
 
-		</Project>
+</Project>

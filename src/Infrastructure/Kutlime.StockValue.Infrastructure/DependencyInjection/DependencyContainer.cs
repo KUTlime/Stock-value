@@ -6,24 +6,24 @@ namespace Kutlime.StockValue.Infrastructure.DependencyInjection;
 
 public class DependencyContainer : IContainer
 {
-	private static void RegisterFinnhubServices(IServiceCollection services)
-	{
-		services.AddScoped<IHttpClient, FinnhubHttpClient>();
-		services.AddScoped<IStockProvider, FinnhubStockService>();
-		services.AddScoped<IStockNameProvider, FinnhubStockNameService>();
-		services.AddScoped<IToken, FinnhubTokenId>();
-	}
+    public IServiceCollection GetService(string serviceProvider)
+    {
+        IServiceCollection services = new ServiceCollection();
+        switch (serviceProvider)
+        {
+            case "Finnhub":
+                RegisterFinnhubServices(services);
+                break;
+            default:
+                break;
+        }
 
-	public IServiceCollection GetService(string serviceProvider)
-	{
-		IServiceCollection services = new ServiceCollection();
-		switch (serviceProvider)
-		{
-			case "Finnhub":
-				RegisterFinnhubServices(services);
-				break;
-		}
+        return services;
+    }
 
-		return services;
-	}
+    private static void RegisterFinnhubServices(IServiceCollection services) =>
+        services.AddScoped<IHttpClient, FinnhubHttpClient>()
+            .AddScoped<IStockProvider, FinnhubStockService>()
+            .AddScoped<IStockNameProvider, FinnhubStockNameService>()
+            .AddScoped<IToken, FinnhubTokenId>();
 }
