@@ -12,7 +12,7 @@
 * Dependency injection
 * Proper use of nested classes
 * Nullable annotation for custom functions
-* Closely reviewed `.editorconfig` for modern, compact syntax
+* Closely reviewed `.editorconfig` for modern, compact C# syntax
 
 ## FAQ
 
