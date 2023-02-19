@@ -32,6 +32,36 @@ These classes represents API-provider contract. This is an implementation detail
 
 The use of enum is a violation of Inversion of Control principle. You can't deploy the presentation layer without redeploying the application layer. To fulfil this principle, one must pass an abstract object (e.g. `string`). Yes, this is a violation of type safety but this trade off could be compensate by unit testing.
 
+### Why `editorconfig` has IDE0058 turn on?
+
+This rule can be annoying at the beginning, but eventually, it provides a real value. I learned that on multiple occasions.
+
+See this code
+
+```csharp
+private static void RegisterFinnhubServices(IServiceCollection services)
+{
+    services.AddScoped<IHttpClient, FinnhubHttpClient>();
+    services.AddScoped<IStockProvider, FinnhubStockService>();
+    services.AddScoped<IStockNameProvider, FinnhubStockNameService>();
+    services.AddScoped<IToken, FinnhubTokenId>();
+}
+```
+
+Looks normal, cool if you like, right? Actually, no. It can be simplified into
+
+```csharp
+private static void RegisterFinnhubServices(IServiceCollection services) =>
+    services.AddScoped<IHttpClient, FinnhubHttpClient>()
+        .AddScoped<IStockProvider, FinnhubStockService>()
+        .AddScoped<IStockNameProvider, FinnhubStockNameService>()
+        .AddScoped<IToken, FinnhubTokenId>();
+```
+
+You will not see this without IDE0058 turned on. 
+
+And yes, it's perfectly clear to me that you may find the first form better and more readable. In that case, this repo (_or at least my_ `.editorconfig`) is not for you.
+
 ## Planned features
 
 * Proper secret management
