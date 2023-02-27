@@ -5,6 +5,7 @@ indent_style = space
 indent_size = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
+end_of_line = crlf
 
 # Visual Studio Solution Files
 [*.sln]
@@ -134,6 +135,10 @@ csharp_prefer_static_local_function = true:error # IDE0062
 # Unnecessary code rules
 csharp_style_unused_value_expression_statement_preference = discard_variable:error # IDE0058
 csharp_style_unused_value_assignment_preference = discard_variable:error # IDE0059
+# Method group rules
+csharp_style_prefer_method_group_conversion = true:error # IDE0200
+# Top level statements
+csharp_style_prefer_top_level_statements = true:error # IDE0210, IDE0211
 ###############################
 # C# Formatting Rules
 ###############################
@@ -231,8 +236,11 @@ dotnet_diagnostic.IDE0160.severity = none # Use block-scoped namespaces.
 dotnet_diagnostic.IDE0161.severity = error # Use file-scoped namespaces.
 dotnet_diagnostic.IDE0170.severity = error
 dotnet_diagnostic.IDE0180.severity = error
+dotnet_diagnostic.IDE0200.severity = error
+dotnet_diagnostic.IDE0210.severity = error
+dotnet_diagnostic.IDE0211.severity = error
 dotnet_diagnostic.IDE1005.severity = error
-dotnet_diagnostic.CS1591.severity = none
+dotnet_diagnostic.CS1591.severity = none # Missing XML comment for publicly visible type or member 'Type_or_Member'
 
 # No corresponding option
 dotnet_diagnostic.IDE0001.severity = error
