@@ -1,0 +1,22 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <ParentDirectoryBuildTargets>$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))</ParentDirectoryBuildTargets>
+  </PropertyGroup>
+
+  <Import Project="$(ParentDirectoryBuildTargets)" Condition="Exists($(ParentDirectoryBuildTargets))"/>
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>Nullable;NU1504;NU1801</WarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>
