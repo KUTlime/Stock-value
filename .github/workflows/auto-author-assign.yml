@@ -1,0 +1,21 @@
+name: Auto Author Assign
+
+on:
+  issues:
+    types: [ opened, reopened ]
+  pull_request_target:
+    types: [ opened, reopened ]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  assign-author:
+    name: Auto-assign pull request author
+    runs-on: ubuntu-latest
+    steps:
+      - uses: toshimaru/auto-author-assign@v1.6.2
+        with:
+          repo-token: ${{ secrets.Action_Token }}
+
