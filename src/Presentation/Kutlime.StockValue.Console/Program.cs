@@ -1,44 +1,36 @@
-﻿namespace Kutlime.StockValue.Console;
+﻿var cancellationTokenSource = RegisterCancellationToken();
+var serviceProvider = ServiceFactory.GetServiceCollection("Finnhub").BuildServiceProvider();
+var stockProvider = serviceProvider.GetRequiredService<IStockProvider>();
+Console.Write("Entry stock name: ");
+string stockName = Console.ReadLine() ?? "MSFT";
+var (name, stockPrice) = await TryGetStockValue(stockProvider, stockName, cancellationTokenSource.Token);
+Console.WriteLine($"Stock: {name.Name} price: {stockPrice.Current}");
 
-internal static class Program
+async Task<Stock> TryGetStockValue(IStockProvider stockProvider, string stockName, CancellationToken cancellationToken)
 {
-    private static async Task Main()
+    try
     {
-        var cancellationTokenSource = RegisterCancellationToken();
-        var serviceProvider = ServiceFactory.GetServiceCollection("Finnhub").BuildServiceProvider();
-        var stockProvider = serviceProvider.GetRequiredService<IStockProvider>();
-        System.Console.Write("Entry stock name: ");
-        string stockName = System.Console.ReadLine() ?? "MSFT";
-        var (name, stockPrice) = await TryGetStockValue(stockProvider, stockName, cancellationTokenSource.Token);
-        System.Console.WriteLine($"Stock: {name.Name} price: {stockPrice.Current}");
+        return await stockProvider.GetStockWithActualPrice(new(stockName, stockName), cancellationToken);
+    }
+    catch (AggregateException e) when (e.InnerExceptions.Any(ex => ex is OperationCanceledException or TaskCanceledException))
+    {
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
     }
 
-    private static async Task<Stock> TryGetStockValue(IStockProvider stockProvider, string stockName, CancellationToken cancellationToken)
-    {
-        try
-        {
-            return await stockProvider.GetStockWithActualPrice(new(stockName, stockName), cancellationToken);
-        }
-        catch (AggregateException e) when (e.InnerExceptions.Any(ex => ex is OperationCanceledException or TaskCanceledException))
-        {
-        }
-        catch (Exception e)
-        {
-            System.Console.WriteLine(e.Message);
-        }
+    return new(new(string.Empty, string.Empty), new(0, 0, 0, 0, 0, 0));
+}
 
-        return new(new(string.Empty, string.Empty), new(0, 0, 0, 0, 0, 0));
-    }
-
-    private static CancellationTokenSource RegisterCancellationToken()
+CancellationTokenSource RegisterCancellationToken()
+{
+    var cancellationTokenSource = new CancellationTokenSource();
+    Console.CancelKeyPress += (_, e) =>
     {
-        var cancellationTokenSource = new CancellationTokenSource();
-        System.Console.CancelKeyPress += (_, e) =>
-        {
-            System.Console.WriteLine("Canceling...");
-            cancellationTokenSource.Cancel();
-            e.Cancel = true;
-        };
-        return cancellationTokenSource;
-    }
+        Console.WriteLine("Canceling...");
+        cancellationTokenSource.Cancel();
+        e.Cancel = true;
+    };
+    return cancellationTokenSource;
 }
