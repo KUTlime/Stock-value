@@ -23,7 +23,7 @@ public class FinnhubStockNameService : IStockNameProvider
         var topStockSymbol = validatedResponse.Results.FirstOrDefault();
         var stockSymbol = Contract.Check(
             topStockSymbol, _symbolResponseMapper, "Finnhub stock symbol result contract failure. The given stock symbol can't be found.");
-        return new StockName(stockSymbol.Description, stockSymbol.Symbol);
+        return new(stockSymbol.Description, stockSymbol.Symbol);
     }
 
     internal record FinnhubSymbolResponse

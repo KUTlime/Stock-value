@@ -17,7 +17,7 @@ internal static class Program
     {
         try
         {
-            return await stockProvider.GetStockWithActualPrice(new StockName(stockName, stockName), cancellationToken);
+            return await stockProvider.GetStockWithActualPrice(new(stockName, stockName), cancellationToken);
         }
         catch (AggregateException e) when (e.InnerExceptions.Any(ex => ex is OperationCanceledException or TaskCanceledException))
         {
@@ -27,7 +27,7 @@ internal static class Program
             System.Console.WriteLine(e.Message);
         }
 
-        return new Stock(new StockName(string.Empty, string.Empty), new StockPrice(0, 0, 0, 0, 0, 0));
+        return new(new(string.Empty, string.Empty), new(0, 0, 0, 0, 0, 0));
     }
 
     private static CancellationTokenSource RegisterCancellationToken()

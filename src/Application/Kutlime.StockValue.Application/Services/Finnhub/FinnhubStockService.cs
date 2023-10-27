@@ -27,9 +27,9 @@ public class FinnhubStockService : IStockProvider
         var result = JsonSerializer.Deserialize<QuoteResponse>(response);
         var priceRaw = result ?? throw new EmptyStockPriceException($"{stockName.Name} with symbol: {stockName.Abbreviation}");
         var price = Contract.Check(priceRaw, _mapper, "Finnhub stock price quote contract failure.");
-        return new Stock(
-            new StockName(validStockName.Result.Name, validStockName.Result.Abbreviation),
-            new DTOs.StockPrice(price.Current, price.High, price.Low, price.Open, price.PreviousClose, price.Time));
+        return new(
+            new(validStockName.Result.Name, validStockName.Result.Abbreviation),
+            new(price.Current, price.High, price.Low, price.Open, price.PreviousClose, price.Time));
     }
 
     internal record QuoteResponse
