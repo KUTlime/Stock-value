@@ -1,4 +1,6 @@
-# Used documentation revision from: 2023-01-18
+# Used documentation revision from: 2023-03-24
+root = true
+
 [*]
 charset = utf-8-bom
 indent_style = space
@@ -37,23 +39,28 @@ max_line_length = 160
 # Organize using statements
 dotnet_sort_system_directives_first = false # IDE0055
 dotnet_separate_import_directive_groups = false # IDE0055
+
 # this. preferences
-dotnet_style_qualification_for_field = false:silent # IDE0003, IDE0009
-dotnet_style_qualification_for_property = false:silent # IDE0003, IDE0009
-dotnet_style_qualification_for_method = false:silent # IDE0003, IDE0009
-dotnet_style_qualification_for_event = false:silent # IDE0003, IDE0009
+dotnet_style_qualification_for_field = false:error # IDE0003 (for false values), IDE0009 (for true values)
+dotnet_style_qualification_for_property = false:error # IDE0003 (for false values), IDE0009 (for true values)
+dotnet_style_qualification_for_method = false:error # IDE0003 (for false values), IDE0009 (for true values)
+dotnet_style_qualification_for_event = false:error # IDE0003 (for false values), IDE0009 (for true values)
+
 # Language keywords vs BCL types preferences
 dotnet_style_predefined_type_for_locals_parameters_members = true:error # IDE0049
 dotnet_style_predefined_type_for_member_access = true:error # IDE0049
+
 # Parentheses preferences
 dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:silent # IDE0047, IDE0048
 dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:silent # IDE0047, IDE0048
 dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:silent # IDE0047, IDE0048
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary:silent # IDE0047, IDE0048
+
 # Modifier preferences
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:error # IDE0040
-csharp_preferred_modifier_order = public, private, protected, internal, static, extern, new, virtual, abstract, sealed, override, readonly, unsafe, volatile, async:error # IDE0036
+csharp_preferred_modifier_order = public, private, protected, internal, file, static, extern, new, virtual, abstract, sealed, override, readonly, unsafe, required, volatile, async:error # IDE0036
 dotnet_style_readonly_field = true:error # IDE0044
+
 # Expression-level preferences
 dotnet_style_object_initializer = true:error # IDE0017
 dotnet_style_collection_initializer = true:error # IDE0028
@@ -66,15 +73,22 @@ dotnet_style_prefer_conditional_expression_over_return = true:error # IDE0046
 dotnet_style_prefer_compound_assignment = true:error # IDE0054, IDE0074
 dotnet_style_prefer_simplified_interpolation = true:error # IDE0071
 dotnet_style_prefer_simplified_boolean_expressions = true:error # IDE0075
+
 # Null-checking preferences
 dotnet_style_coalesce_expression = true:error # IDE0029, IDE0030
 dotnet_style_null_propagation = true:error # IDE0031
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:error # IDE0041
+
 # Folder structure organization
 dotnet_style_namespace_match_folder = true:error # IDE0130
+
 # Unnecessary code rules
 dotnet_code_quality_unused_parameters = all:error # IDE0060
 dotnet_remove_unnecessary_suppression_exclusions = all:error # IDE0079
+
+# Operator placement rules
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+
 ###############################
 # Naming Conventions
 ###############################
@@ -87,14 +101,37 @@ dotnet_naming_rule.constant_fields_should_be_pascal_case.style = pascal_case_sty
 dotnet_naming_symbols.constant_fields.applicable_kinds = field
 dotnet_naming_symbols.constant_fields.applicable_accessibilities = *
 dotnet_naming_symbols.constant_fields.required_modifiers = const
+
+# Define the 'private_fields' symbol group:
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+
+# Define the 'private_static_fields' symbol group
+dotnet_naming_symbols.private_static_fields.applicable_kinds = field
+dotnet_naming_symbols.private_static_fields.applicable_accessibilities = private
+dotnet_naming_symbols.private_static_fields.required_modifiers = static
+
+# Define the 'underscored' naming style
+dotnet_naming_style.underscored.capitalization = camel_case
+dotnet_naming_style.underscored.required_prefix = _
+
+# Define the 'private_fields_underscored' naming rule
+dotnet_naming_rule.private_fields_underscored.symbols = private_fields
+dotnet_naming_rule.private_fields_underscored.style = underscored
+dotnet_naming_rule.private_fields_underscored.severity = warning
+
+# Define the 'private_static_fields_none' naming rule
+dotnet_naming_rule.private_static_fields_none.symbols = private_static_fields
+dotnet_naming_rule.private_static_fields_none.style = underscored
+dotnet_naming_rule.private_static_fields_none.severity = warning
 ###############################
 # C# Coding Conventions
 ###############################
-[*.cs]
 # var preferences
 csharp_style_var_for_built_in_types = false:error # IDE0007, IDE0008
 csharp_style_var_when_type_is_apparent = true:error # IDE0007, IDE0008
 csharp_style_var_elsewhere = true:error # IDE0007, IDE0008
+
 # Expression-bodied members
 csharp_style_expression_bodied_constructors = true:error # IDE0021
 csharp_style_expression_bodied_methods = true:error # IDE0022
@@ -105,12 +142,14 @@ csharp_style_expression_bodied_accessors = true:error # IDE0027
 csharp_style_expression_bodied_lambdas = true:error # IDE0053
 csharp_style_expression_bodied_local_functions = true:error # IDE0061
 csharp_style_prefer_extended_property_pattern = true:error # IDE0170
+
 # Pattern matching preferences
 csharp_style_pattern_matching_over_as_with_null_check = true:error # IDE0019
 csharp_style_pattern_matching_over_is_with_cast_check = true:error # IDE0020, IDE0038
 csharp_style_prefer_switch_expression = true:error # IDE0066
 csharp_style_prefer_pattern_matching = true:error # IDE0078
 csharp_style_prefer_not_pattern = true:error # IDE0083
+
 # Expression-level preferences
 csharp_style_inlined_variable_declaration = true:error # IDE0018
 csharp_prefer_simple_default_expression = true:error # IDE0034
@@ -121,22 +160,29 @@ csharp_style_prefer_index_operator = true:error # IDE0056
 csharp_style_prefer_range_operator = true:error # IDE0057
 csharp_style_implicit_object_creation_when_type_is_apparent = true:error # IDE0090
 csharp_style_prefer_tuple_swap = true:error # IDE00180
+
 # Null-checking preferences
 csharp_style_throw_expression = true:error # IDE0016
 csharp_style_prefer_null_check_over_type_check = true:error # IDE0150
 csharp_style_conditional_delegate_call = true:error # IDE1005
+
 # Code block preferences
 csharp_prefer_braces = when_multiline:error # IDE0011
 csharp_prefer_simple_using_statement = true:error # IDE0063
+
 # using directive placement
 csharp_using_directive_placement = outside_namespace:error # IDE0065
+
 # Modifier preferences
 csharp_prefer_static_local_function = true:error # IDE0062
+
 # Unnecessary code rules
 csharp_style_unused_value_expression_statement_preference = discard_variable:error # IDE0058
 csharp_style_unused_value_assignment_preference = discard_variable:error # IDE0059
+
 # Method group rules
 csharp_style_prefer_method_group_conversion = true:error # IDE0200
+
 # Top level statements
 csharp_style_prefer_top_level_statements = true:error # IDE0210, IDE0211
 ###############################
@@ -150,10 +196,12 @@ csharp_new_line_before_finally = true # IDE0055
 csharp_new_line_before_members_in_object_initializers = true # IDE0055
 csharp_new_line_before_members_in_anonymous_types = true # IDE0055
 csharp_new_line_between_query_expression_clauses = true # IDE0055
+
 # Indentation preferences
 csharp_indent_case_contents = true # IDE0055
 csharp_indent_switch_labels = true # IDE0055
 csharp_indent_labels = flush_left # IDE0055
+
 # Space preferences
 csharp_space_after_cast = false # IDE0055 (a conflict with SA1003 & SA1009)
 csharp_space_after_keywords_in_control_flow_statements = true # IDE0055
@@ -166,304 +214,400 @@ csharp_space_around_binary_operators = before_and_after # IDE0055
 csharp_space_between_method_declaration_empty_parameter_list_parentheses = false # IDE0055
 csharp_space_between_method_call_name_and_opening_parenthesis = false # IDE0055
 csharp_space_between_method_call_empty_parameter_list_parentheses = false # IDE0055
+
 # Wrapping preferences
 csharp_preserve_single_line_statements = true # IDE0055
 csharp_preserve_single_line_blocks = true # IDE0055
+
 # Namespace organization
 csharp_style_namespace_declarations = file_scoped:error # IDE0161
+
 ###############################
 # .NET Diagnostics
 ###############################
-# Remove unnecessary import https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0005
-dotnet_diagnostic.IDE0003.severity = none
-dotnet_diagnostic.IDE0005.severity = error
-dotnet_diagnostic.IDE0007.severity = error
-dotnet_diagnostic.IDE0008.severity = error
-dotnet_diagnostic.IDE0009.severity = none
-dotnet_diagnostic.IDE0011.severity = none
-dotnet_diagnostic.IDE0016.severity = error
-dotnet_diagnostic.IDE0017.severity = error
-dotnet_diagnostic.IDE0018.severity = error
-dotnet_diagnostic.IDE0019.severity = error
-dotnet_diagnostic.IDE0020.severity = error
-dotnet_diagnostic.IDE0021.severity = error
-dotnet_diagnostic.IDE0022.severity = error
-dotnet_diagnostic.IDE0023.severity = error
-dotnet_diagnostic.IDE0024.severity = error
-dotnet_diagnostic.IDE0025.severity = error
-dotnet_diagnostic.IDE0026.severity = error
-dotnet_diagnostic.IDE0028.severity = error
-dotnet_diagnostic.IDE0029.severity = error
-dotnet_diagnostic.IDE0030.severity = error
-dotnet_diagnostic.IDE0031.severity = error
-dotnet_diagnostic.IDE0032.severity = error
-dotnet_diagnostic.IDE0033.severity = error
-dotnet_diagnostic.IDE0034.severity = error
-dotnet_diagnostic.IDE0036.severity = error
-dotnet_diagnostic.IDE0037.severity = error
-dotnet_diagnostic.IDE0038.severity = error
-dotnet_diagnostic.IDE0039.severity = error
-dotnet_diagnostic.IDE0040.severity = error
-dotnet_diagnostic.IDE0041.severity = error
-dotnet_diagnostic.IDE0042.severity = error
-dotnet_diagnostic.IDE0044.severity = error
-dotnet_diagnostic.IDE0045.severity = error
-dotnet_diagnostic.IDE0046.severity = error
-dotnet_diagnostic.IDE0047.severity = none
-dotnet_diagnostic.IDE0048.severity = none
-dotnet_diagnostic.IDE0049.severity = error
-dotnet_diagnostic.IDE0054.severity = error
-dotnet_diagnostic.IDE0055.severity = error
-dotnet_diagnostic.IDE0056.severity = error
-dotnet_diagnostic.IDE0057.severity = error
-dotnet_diagnostic.IDE0058.severity = error
-dotnet_diagnostic.IDE0059.severity = error
-dotnet_diagnostic.IDE0060.severity = error
-dotnet_diagnostic.IDE0062.severity = error
-dotnet_diagnostic.IDE0063.severity = error
-dotnet_diagnostic.IDE0064.severity = error
-dotnet_diagnostic.IDE0065.severity = error
-dotnet_diagnostic.IDE0066.severity = error
-dotnet_diagnostic.IDE0071.severity = error
-dotnet_diagnostic.IDE0074.severity = error
-dotnet_diagnostic.IDE0075.severity = error
-dotnet_diagnostic.IDE0078.severity = error
-dotnet_diagnostic.IDE0079.severity = error
-dotnet_diagnostic.IDE0083.severity = error
-dotnet_diagnostic.IDE0090.severity = error
-dotnet_diagnostic.IDE0150.severity = error
-dotnet_diagnostic.IDE0160.severity = none # Use block-scoped namespaces.
-dotnet_diagnostic.IDE0161.severity = error # Use file-scoped namespaces.
-dotnet_diagnostic.IDE0170.severity = error
-dotnet_diagnostic.IDE0180.severity = error
-dotnet_diagnostic.IDE0200.severity = error
-dotnet_diagnostic.IDE0210.severity = error
-dotnet_diagnostic.IDE0211.severity = error
-dotnet_diagnostic.IDE1005.severity = error
-dotnet_diagnostic.CS1591.severity = none # Missing XML comment for publicly visible type or member 'Type_or_Member'
+dotnet_diagnostic.ide0001.severity = error # No corresponding option
+dotnet_diagnostic.ide0002.severity = error # No corresponding option
+dotnet_diagnostic.IDE0003.severity = error # Drives corresponding settings that are set to false. If no settings is set to false, this analyzer has no effect.
+dotnet_diagnostic.ide0004.severity = error # No corresponding option
+dotnet_diagnostic.ide0005.severity = error # No corresponding option # Remove unnecessary import https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0005
+dotnet_diagnostic.ide0007.severity = error
+dotnet_diagnostic.ide0008.severity = error
+dotnet_diagnostic.IDE0009.severity = error # Drives corresponding settings that are set to true. If no settings is set to true, this analyzer has no effect.
+dotnet_diagnostic.ide0010.severity = error # No corresponding option
+dotnet_diagnostic.ide0011.severity = error
+# dotnet_diagnostic.IDE0012.severity = none deprecated
+# dotnet_diagnostic.IDE0013.severity = none deprecated
+# dotnet_diagnostic.IDE0014.severity = none deprecated
+# dotnet_diagnostic.IDE0015.severity = none deprecated
+dotnet_diagnostic.ide0016.severity = error
+dotnet_diagnostic.ide0017.severity = error
+dotnet_diagnostic.ide0018.severity = error
+dotnet_diagnostic.ide0019.severity = error
+dotnet_diagnostic.ide0020.severity = error
+dotnet_diagnostic.ide0021.severity = error
+dotnet_diagnostic.ide0022.severity = error
+dotnet_diagnostic.ide0023.severity = error
+dotnet_diagnostic.ide0024.severity = error
+dotnet_diagnostic.ide0025.severity = error
+dotnet_diagnostic.ide0026.severity = error
+dotnet_diagnostic.ide0027.severity = error
+dotnet_diagnostic.ide0028.severity = error
+dotnet_diagnostic.ide0029.severity = error
+dotnet_diagnostic.ide0030.severity = error
+dotnet_diagnostic.ide0031.severity = error
+dotnet_diagnostic.ide0032.severity = error
+dotnet_diagnostic.ide0033.severity = error
+dotnet_diagnostic.ide0034.severity = error
+dotnet_diagnostic.ide0035.severity = error # No corresponding option
+dotnet_diagnostic.ide0036.severity = error
+dotnet_diagnostic.ide0037.severity = error
+dotnet_diagnostic.ide0038.severity = error
+dotnet_diagnostic.ide0039.severity = error
+dotnet_diagnostic.ide0040.severity = error
+dotnet_diagnostic.ide0041.severity = error
+dotnet_diagnostic.ide0042.severity = error
+dotnet_diagnostic.ide0043.severity = error # Undocumented, see https://makolyte.com/use-string-interpolation-instead-of-string-format-to-prevent-runtime-formatexceptions/ for details.
+dotnet_diagnostic.ide0044.severity = error
+dotnet_diagnostic.ide0045.severity = error
+dotnet_diagnostic.ide0046.severity = error
+dotnet_diagnostic.ide0047.severity = none # Parentheses preferences # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0047-ide0048
+dotnet_diagnostic.ide0048.severity = none # Parentheses preferences # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0047-ide0048
+dotnet_diagnostic.ide0049.severity = error
+# dotnet_diagnostic.IDE0050.severity = error # deprecated
+dotnet_diagnostic.ide0051.severity = error # No corresponding option
+dotnet_diagnostic.ide0052.severity = error # No corresponding option
+dotnet_diagnostic.ide0053.severity = error
+dotnet_diagnostic.ide0054.severity = error # No corresponding option
+dotnet_diagnostic.ide0055.severity = error
+dotnet_diagnostic.ide0056.severity = error
+dotnet_diagnostic.ide0057.severity = error
+dotnet_diagnostic.ide0058.severity = error
+dotnet_diagnostic.ide0059.severity = error
+dotnet_diagnostic.ide0060.severity = error
+dotnet_diagnostic.ide0061.severity = error
+dotnet_diagnostic.ide0062.severity = error
+dotnet_diagnostic.ide0063.severity = error
+dotnet_diagnostic.ide0064.severity = error
+dotnet_diagnostic.ide0065.severity = error
+dotnet_diagnostic.ide0066.severity = error
+# dotnet_diagnostic.IDE0067.severity = error # deprecated
+# dotnet_diagnostic.IDE0068.severity = error # deprecated
+# dotnet_diagnostic.IDE0069.severity = error # deprecated
+dotnet_diagnostic.ide0070.severity = error # No corresponding option
+dotnet_diagnostic.ide0071.severity = error
+dotnet_diagnostic.ide0072.severity = error # No corresponding option
+dotnet_diagnostic.ide0073.severity = none # Missing file headers
+dotnet_diagnostic.ide0074.severity = error
+dotnet_diagnostic.ide0075.severity = error
+dotnet_diagnostic.ide0076.severity = error
+dotnet_diagnostic.ide0077.severity = error
+dotnet_diagnostic.ide0078.severity = error
+dotnet_diagnostic.ide0079.severity = error
+dotnet_diagnostic.ide0080.severity = error # No corresponding option
+# dotnet_diagnostic.IDE0081.severity = error # VB only
+dotnet_diagnostic.ide0082.severity = error # No corresponding option
+dotnet_diagnostic.ide0083.severity = error
+# dotnet_diagnostic.IDE0084.severity = error # VB only
+dotnet_diagnostic.ide0090.severity = error
+dotnet_diagnostic.ide0100.severity = error # No corresponding option
+dotnet_diagnostic.ide0110.severity = error # No corresponding option
+dotnet_diagnostic.ide0120.severity = error
+dotnet_diagnostic.ide0130.severity = error
+# dotnet_diagnostic.IDE0140.severity = error # VB only
+dotnet_diagnostic.ide0150.severity = error
+dotnet_diagnostic.ide0160.severity = none # Use block-scoped namespaces.
+dotnet_diagnostic.ide0161.severity = error # Use file-scoped namespaces.
+dotnet_diagnostic.ide0170.severity = error
+dotnet_diagnostic.ide0180.severity = error
+dotnet_diagnostic.ide0200.severity = error
+dotnet_diagnostic.ide0210.severity = error
+dotnet_diagnostic.ide0211.severity = error
+dotnet_diagnostic.ide0220.severity = error
+dotnet_diagnostic.ide0230.severity = error
+dotnet_diagnostic.ide0240.severity = error
+dotnet_diagnostic.ide0241.severity = error
+dotnet_diagnostic.ide0250.severity = error
+dotnet_diagnostic.ide0251.severity = error
+dotnet_diagnostic.ide0260.severity = error
+dotnet_diagnostic.ide0270.severity = error
+dotnet_diagnostic.ide0280.severity = error
+dotnet_diagnostic.ide1005.severity = error
+dotnet_diagnostic.ide1006.severity = error # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/naming-rules
 
-# No corresponding option
-dotnet_diagnostic.IDE0001.severity = error
-dotnet_diagnostic.IDE0002.severity = error
-dotnet_diagnostic.IDE0004.severity = error
-dotnet_diagnostic.IDE0010.severity = error
-dotnet_diagnostic.IDE0035.severity = error
-dotnet_diagnostic.IDE0051.severity = error
-dotnet_diagnostic.IDE0052.severity = error
-dotnet_diagnostic.IDE0054.severity = error
-dotnet_diagnostic.IDE0070.severity = error
-dotnet_diagnostic.IDE0072.severity = error
-dotnet_diagnostic.IDE0076.severity = error
-dotnet_diagnostic.IDE0077.severity = error
-dotnet_diagnostic.IDE0080.severity = error
-dotnet_diagnostic.IDE0082.severity = error
-dotnet_diagnostic.IDE0100.severity = error # ToDo: Is correct?
-dotnet_diagnostic.IDE0110.severity = error
+# Other rules
+dotnet_diagnostic.json001.severity = error
+dotnet_diagnostic.json002.severity = error
+dotnet_diagnostic.re0001.severity = error
 
 ###############################
 # StyleCop.Analyzers configuration
 ###############################
-dotnet_diagnostic.SA0001.severity = error
-dotnet_diagnostic.SA0002.severity = error
-dotnet_diagnostic.SA1000.severity = error
-dotnet_diagnostic.SA1001.severity = error
-dotnet_diagnostic.SA1002.severity = error
-dotnet_diagnostic.SA1003.severity = error
-dotnet_diagnostic.SA1004.severity = error
-dotnet_diagnostic.SA1005.severity = error
-dotnet_diagnostic.SA1006.severity = error
-dotnet_diagnostic.SA1007.severity = error
-dotnet_diagnostic.SA1008.severity = error
-dotnet_diagnostic.SA1009.severity = error
-dotnet_diagnostic.SA1010.severity = error
-dotnet_diagnostic.SA1011.severity = error
-dotnet_diagnostic.SA1012.severity = error
-dotnet_diagnostic.SA1013.severity = error
-dotnet_diagnostic.SA1014.severity = error
-dotnet_diagnostic.SA1015.severity = error
-dotnet_diagnostic.SA1016.severity = error
-dotnet_diagnostic.SA1017.severity = error
-dotnet_diagnostic.SA1018.severity = error
-dotnet_diagnostic.SA1019.severity = error
-dotnet_diagnostic.SA1020.severity = error
-dotnet_diagnostic.SA1021.severity = error
-dotnet_diagnostic.SA1022.severity = error
-dotnet_diagnostic.SA1023.severity = error
-dotnet_diagnostic.SA1024.severity = error
-dotnet_diagnostic.SA1025.severity = error
-dotnet_diagnostic.SA1026.severity = error
-dotnet_diagnostic.SA1027.severity = error
-dotnet_diagnostic.SA1028.severity = error
-dotnet_diagnostic.SA1100.severity = error
-dotnet_diagnostic.SA1101.severity = none # Prefix local calls with this
-dotnet_diagnostic.SA1102.severity = error
-dotnet_diagnostic.SA1103.severity = error
-dotnet_diagnostic.SA1104.severity = error
-dotnet_diagnostic.SA1105.severity = error
-dotnet_diagnostic.SA1106.severity = error
-dotnet_diagnostic.SA1107.severity = error
-dotnet_diagnostic.SA1108.severity = error
-dotnet_diagnostic.SA1109.severity = error
-dotnet_diagnostic.SA1110.severity = error
-dotnet_diagnostic.SA1111.severity = error
-dotnet_diagnostic.SA1112.severity = error
-dotnet_diagnostic.SA1113.severity = error
-dotnet_diagnostic.SA1114.severity = error
-dotnet_diagnostic.SA1115.severity = error
-dotnet_diagnostic.SA1116.severity = error
-dotnet_diagnostic.SA1117.severity = error
-dotnet_diagnostic.SA1118.severity = error
-dotnet_diagnostic.SA1119.severity = error
-dotnet_diagnostic.SA1120.severity = error
-dotnet_diagnostic.SA1121.severity = error
-dotnet_diagnostic.SA1122.severity = error
-dotnet_diagnostic.SA1123.severity = error
-dotnet_diagnostic.SA1124.severity = error
-dotnet_diagnostic.SA1125.severity = error
-dotnet_diagnostic.SA1126.severity = error
-dotnet_diagnostic.SA1127.severity = error
-dotnet_diagnostic.SA1128.severity = error
-dotnet_diagnostic.SA1129.severity = error
-dotnet_diagnostic.SA1130.severity = error
-dotnet_diagnostic.SA1131.severity = error
-dotnet_diagnostic.SA1132.severity = error
-dotnet_diagnostic.SA1133.severity = error
-dotnet_diagnostic.SA1134.severity = error
-dotnet_diagnostic.SA1135.severity = error
-dotnet_diagnostic.SA1136.severity = error
-dotnet_diagnostic.SA1137.severity = error
-dotnet_diagnostic.SA1139.severity = error
-dotnet_diagnostic.SA1141.severity = error
-dotnet_diagnostic.SA1142.severity = error
-dotnet_diagnostic.SA1200.severity = error
-dotnet_diagnostic.SA1201.severity = error
-dotnet_diagnostic.SA1202.severity = error
-dotnet_diagnostic.SA1203.severity = error
-dotnet_diagnostic.SA1204.severity = error
-dotnet_diagnostic.SA1205.severity = error
-dotnet_diagnostic.SA1206.severity = error
-dotnet_diagnostic.SA1207.severity = error
-dotnet_diagnostic.SA1208.severity = error
-dotnet_diagnostic.SA1209.severity = error
-dotnet_diagnostic.SA1210.severity = error
-dotnet_diagnostic.SA1211.severity = error
-dotnet_diagnostic.SA1212.severity = error
-dotnet_diagnostic.SA1213.severity = error
-dotnet_diagnostic.SA1214.severity = error
-dotnet_diagnostic.SA1215.severity = error
-dotnet_diagnostic.SA1216.severity = error
-dotnet_diagnostic.SA1217.severity = error
-dotnet_diagnostic.SA1300.severity = error
-dotnet_diagnostic.SA1301.severity = error
-dotnet_diagnostic.SA1302.severity = error
-dotnet_diagnostic.SA1303.severity = error
-dotnet_diagnostic.SA1304.severity = error
-dotnet_diagnostic.SA1305.severity = none # Variable 'dbTask' should not use Hungarian notation. This is default & stylecop.json for whitelisting db didn't work
-dotnet_diagnostic.SA1306.severity = error
-dotnet_diagnostic.SA1307.severity = error
-dotnet_diagnostic.SA1308.severity = error
-dotnet_diagnostic.SA1309.severity = none #  Field 'xxx' should not begin with an underscore
-dotnet_diagnostic.SA1310.severity = error
-dotnet_diagnostic.SA1311.severity = error
-dotnet_diagnostic.SA1312.severity = error
-dotnet_diagnostic.SA1313.severity = error
-dotnet_diagnostic.SA1314.severity = error
-dotnet_diagnostic.SA1316.severity = error
-dotnet_diagnostic.SA1400.severity = error
-dotnet_diagnostic.SA1401.severity = error
-dotnet_diagnostic.SA1402.severity = error
-dotnet_diagnostic.SA1403.severity = error
-dotnet_diagnostic.SA1404.severity = error
-dotnet_diagnostic.SA1405.severity = error
-dotnet_diagnostic.SA1406.severity = error
-dotnet_diagnostic.SA1407.severity = error
-dotnet_diagnostic.SA1408.severity = error
-dotnet_diagnostic.SA1409.severity = error
-dotnet_diagnostic.SA1410.severity = error
-dotnet_diagnostic.SA1411.severity = error
-dotnet_diagnostic.SA1412.severity = error
-dotnet_diagnostic.SA1413.severity = error
-dotnet_diagnostic.SA1414.severity = error
-dotnet_diagnostic.SA1500.severity = error
-dotnet_diagnostic.SA1501.severity = error
-dotnet_diagnostic.SA1502.severity = error
-dotnet_diagnostic.SA1503.severity = error
-dotnet_diagnostic.SA1504.severity = error
-dotnet_diagnostic.SA1505.severity = error
-dotnet_diagnostic.SA1506.severity = error
-dotnet_diagnostic.SA1507.severity = error
-dotnet_diagnostic.SA1508.severity = error
-dotnet_diagnostic.SA1509.severity = error
-dotnet_diagnostic.SA1510.severity = error
-dotnet_diagnostic.SA1511.severity = error
-dotnet_diagnostic.SA1512.severity = error
-dotnet_diagnostic.SA1513.severity = error
-dotnet_diagnostic.SA1514.severity = error
-dotnet_diagnostic.SA1515.severity = error
-dotnet_diagnostic.SA1516.severity = error
-dotnet_diagnostic.SA1517.severity = error
-dotnet_diagnostic.SA1518.severity = error
-dotnet_diagnostic.SA1519.severity = error
-dotnet_diagnostic.SA1520.severity = error
-dotnet_diagnostic.SA1600.severity = none # Elements should be documented (missing XML docs on public classes/methods, props)
-dotnet_diagnostic.SA1601.severity = error
-dotnet_diagnostic.SA1602.severity = none # Enumeration items should be documented
-dotnet_diagnostic.SA1603.severity = error
-dotnet_diagnostic.SA1604.severity = error
-dotnet_diagnostic.SA1605.severity = error
-dotnet_diagnostic.SA1606.severity = error
-dotnet_diagnostic.SA1607.severity = error
-dotnet_diagnostic.SA1608.severity = error
-dotnet_diagnostic.SA1609.severity = error
-dotnet_diagnostic.SA1610.severity = error
-dotnet_diagnostic.SA1611.severity = error
-dotnet_diagnostic.SA1612.severity = error
-dotnet_diagnostic.SA1613.severity = error
-dotnet_diagnostic.SA1614.severity = error
-dotnet_diagnostic.SA1615.severity = error
-dotnet_diagnostic.SA1616.severity = error
-dotnet_diagnostic.SA1617.severity = error
-dotnet_diagnostic.SA1618.severity = error
-dotnet_diagnostic.SA1619.severity = error
-dotnet_diagnostic.SA1620.severity = error
-dotnet_diagnostic.SA1621.severity = error
-dotnet_diagnostic.SA1622.severity = error
-dotnet_diagnostic.SA1623.severity = error
-dotnet_diagnostic.SA1624.severity = error
-dotnet_diagnostic.SA1625.severity = error
-dotnet_diagnostic.SA1626.severity = error
-dotnet_diagnostic.SA1627.severity = error
-dotnet_diagnostic.SA1628.severity = error
-dotnet_diagnostic.SA1629.severity = error
-dotnet_diagnostic.SA1630.severity = error
-dotnet_diagnostic.SA1631.severity = error
-dotnet_diagnostic.SA1632.severity = error
-dotnet_diagnostic.SA1633.severity = none # The file header is missing or not located at the top of the file.
-dotnet_diagnostic.SA1634.severity = error
-dotnet_diagnostic.SA1635.severity = error
-dotnet_diagnostic.SA1636.severity = error
-dotnet_diagnostic.SA1637.severity = error
-dotnet_diagnostic.SA1638.severity = error
-dotnet_diagnostic.SA1639.severity = error
-dotnet_diagnostic.SA1640.severity = error
-dotnet_diagnostic.SA1641.severity = error
-dotnet_diagnostic.SA1642.severity = error
-dotnet_diagnostic.SA1643.severity = error
-dotnet_diagnostic.SA1644.severity = error
-dotnet_diagnostic.SA1645.severity = error
-dotnet_diagnostic.SA1646.severity = error
-dotnet_diagnostic.SA1647.severity = error
-dotnet_diagnostic.SA1648.severity = error
-dotnet_diagnostic.SA1649.severity = error
-dotnet_diagnostic.SA1650.severity = error
-dotnet_diagnostic.SA1651.severity = error
-dotnet_diagnostic.SA1652.severity = error
-dotnet_diagnostic.SX1101.severity = error
-dotnet_diagnostic.SX1309.severity = error
-dotnet_diagnostic.SX1309S.severity = error
+dotnet_diagnostic.sa0001.severity = error
+dotnet_diagnostic.sa0002.severity = error
+dotnet_diagnostic.sa1000.severity = error
+dotnet_diagnostic.sa1001.severity = error
+dotnet_diagnostic.sa1002.severity = error
+dotnet_diagnostic.sa1003.severity = error
+dotnet_diagnostic.sa1004.severity = error
+dotnet_diagnostic.sa1005.severity = error
+dotnet_diagnostic.sa1006.severity = error
+dotnet_diagnostic.sa1007.severity = error
+dotnet_diagnostic.sa1008.severity = error
+dotnet_diagnostic.sa1009.severity = error
+dotnet_diagnostic.sa1010.severity = error
+dotnet_diagnostic.sa1011.severity = error
+dotnet_diagnostic.sa1012.severity = error
+dotnet_diagnostic.sa1013.severity = error
+dotnet_diagnostic.sa1014.severity = error
+dotnet_diagnostic.sa1015.severity = error
+dotnet_diagnostic.sa1016.severity = error
+dotnet_diagnostic.sa1017.severity = error
+dotnet_diagnostic.sa1018.severity = error
+dotnet_diagnostic.sa1019.severity = error
+dotnet_diagnostic.sa1020.severity = error
+dotnet_diagnostic.sa1021.severity = error
+dotnet_diagnostic.sa1022.severity = error
+dotnet_diagnostic.sa1023.severity = error
+dotnet_diagnostic.sa1024.severity = error
+dotnet_diagnostic.sa1025.severity = error
+dotnet_diagnostic.sa1026.severity = error
+dotnet_diagnostic.sa1027.severity = error
+dotnet_diagnostic.sa1028.severity = error
+dotnet_diagnostic.sa1100.severity = error
+dotnet_diagnostic.sa1101.severity = none # Prefix local calls with this
+dotnet_diagnostic.sa1102.severity = error
+dotnet_diagnostic.sa1103.severity = error
+dotnet_diagnostic.sa1104.severity = error
+dotnet_diagnostic.sa1105.severity = error
+dotnet_diagnostic.sa1106.severity = error
+dotnet_diagnostic.sa1107.severity = error
+dotnet_diagnostic.sa1108.severity = error
+dotnet_diagnostic.sa1109.severity = error
+dotnet_diagnostic.sa1110.severity = error
+dotnet_diagnostic.sa1111.severity = error
+dotnet_diagnostic.sa1112.severity = error
+dotnet_diagnostic.sa1113.severity = error
+dotnet_diagnostic.sa1114.severity = error
+dotnet_diagnostic.sa1115.severity = error
+dotnet_diagnostic.sa1116.severity = error
+dotnet_diagnostic.sa1117.severity = error
+dotnet_diagnostic.sa1118.severity = error
+dotnet_diagnostic.sa1119.severity = error
+dotnet_diagnostic.sa1120.severity = error
+dotnet_diagnostic.sa1121.severity = error
+dotnet_diagnostic.sa1122.severity = error
+dotnet_diagnostic.sa1123.severity = error
+dotnet_diagnostic.sa1124.severity = error
+dotnet_diagnostic.sa1125.severity = error
+dotnet_diagnostic.sa1126.severity = error
+dotnet_diagnostic.sa1127.severity = error
+dotnet_diagnostic.sa1128.severity = error
+dotnet_diagnostic.sa1129.severity = error
+dotnet_diagnostic.sa1130.severity = error
+dotnet_diagnostic.sa1131.severity = error
+dotnet_diagnostic.sa1132.severity = error
+dotnet_diagnostic.sa1133.severity = error
+dotnet_diagnostic.sa1134.severity = error
+dotnet_diagnostic.sa1135.severity = error
+dotnet_diagnostic.sa1136.severity = error
+dotnet_diagnostic.sa1137.severity = error
+dotnet_diagnostic.sa1139.severity = error
+dotnet_diagnostic.sa1141.severity = error
+dotnet_diagnostic.sa1142.severity = error
+dotnet_diagnostic.sa1200.severity = error
+dotnet_diagnostic.sa1201.severity = error
+dotnet_diagnostic.sa1202.severity = error
+dotnet_diagnostic.sa1203.severity = error
+dotnet_diagnostic.sa1204.severity = error
+dotnet_diagnostic.sa1205.severity = error
+dotnet_diagnostic.sa1206.severity = none # Problems with required keyword from C# 11.
+dotnet_diagnostic.sa1207.severity = error
+dotnet_diagnostic.sa1208.severity = error
+dotnet_diagnostic.sa1209.severity = error
+dotnet_diagnostic.sa1210.severity = error
+dotnet_diagnostic.sa1211.severity = error
+dotnet_diagnostic.sa1212.severity = error
+dotnet_diagnostic.sa1213.severity = error
+dotnet_diagnostic.sa1214.severity = error
+dotnet_diagnostic.sa1215.severity = error
+dotnet_diagnostic.sa1216.severity = error
+dotnet_diagnostic.sa1217.severity = error
+dotnet_diagnostic.sa1300.severity = error
+dotnet_diagnostic.sa1301.severity = error
+dotnet_diagnostic.sa1302.severity = error
+dotnet_diagnostic.sa1303.severity = error
+dotnet_diagnostic.sa1304.severity = error
+dotnet_diagnostic.sa1305.severity = none # Problems with whitelisting.
+dotnet_diagnostic.sa1306.severity = error
+dotnet_diagnostic.sa1307.severity = error
+dotnet_diagnostic.sa1308.severity = error
+dotnet_diagnostic.sa1309.severity = none #  Field 'xxx' should not begin with an underscore
+dotnet_diagnostic.sa1310.severity = error
+dotnet_diagnostic.sa1311.severity = error
+dotnet_diagnostic.sa1312.severity = error
+dotnet_diagnostic.sa1313.severity = error
+dotnet_diagnostic.sa1314.severity = error
+dotnet_diagnostic.sa1316.severity = error
+dotnet_diagnostic.sa1400.severity = error
+dotnet_diagnostic.sa1401.severity = error
+dotnet_diagnostic.sa1402.severity = error
+dotnet_diagnostic.sa1403.severity = error
+dotnet_diagnostic.sa1404.severity = error
+dotnet_diagnostic.sa1405.severity = error
+dotnet_diagnostic.sa1406.severity = error
+dotnet_diagnostic.sa1407.severity = error
+dotnet_diagnostic.sa1408.severity = error
+dotnet_diagnostic.sa1409.severity = error
+dotnet_diagnostic.sa1410.severity = error
+dotnet_diagnostic.sa1411.severity = error
+dotnet_diagnostic.sa1412.severity = error
+dotnet_diagnostic.sa1413.severity = error
+dotnet_diagnostic.sa1414.severity = error
+dotnet_diagnostic.sa1500.severity = error
+dotnet_diagnostic.sa1501.severity = error
+dotnet_diagnostic.sa1502.severity = error
+dotnet_diagnostic.sa1503.severity = error
+dotnet_diagnostic.sa1504.severity = error
+dotnet_diagnostic.sa1505.severity = error
+dotnet_diagnostic.sa1506.severity = error
+dotnet_diagnostic.sa1507.severity = error
+dotnet_diagnostic.sa1508.severity = error
+dotnet_diagnostic.sa1509.severity = error
+dotnet_diagnostic.sa1510.severity = error
+dotnet_diagnostic.sa1511.severity = error
+dotnet_diagnostic.sa1512.severity = error
+dotnet_diagnostic.sa1513.severity = error
+dotnet_diagnostic.sa1514.severity = error
+dotnet_diagnostic.sa1515.severity = error
+dotnet_diagnostic.sa1516.severity = error
+dotnet_diagnostic.sa1517.severity = error
+dotnet_diagnostic.sa1518.severity = error
+dotnet_diagnostic.sa1519.severity = error
+dotnet_diagnostic.sa1520.severity = error
+dotnet_diagnostic.sa1600.severity = none # Elements should be documented (missing XML docs on public classes/methods, props)
+dotnet_diagnostic.sa1601.severity = error
+dotnet_diagnostic.sa1602.severity = none # Enumeration items should be documented
+dotnet_diagnostic.sa1603.severity = error
+dotnet_diagnostic.sa1604.severity = error
+dotnet_diagnostic.sa1605.severity = error
+dotnet_diagnostic.sa1606.severity = error
+dotnet_diagnostic.sa1607.severity = error
+dotnet_diagnostic.sa1608.severity = error
+dotnet_diagnostic.sa1609.severity = error
+dotnet_diagnostic.sa1610.severity = error
+dotnet_diagnostic.sa1611.severity = error
+dotnet_diagnostic.sa1612.severity = error
+dotnet_diagnostic.sa1613.severity = error
+dotnet_diagnostic.sa1614.severity = error
+dotnet_diagnostic.sa1615.severity = error
+dotnet_diagnostic.sa1616.severity = error
+dotnet_diagnostic.sa1617.severity = error
+dotnet_diagnostic.sa1618.severity = error
+dotnet_diagnostic.sa1619.severity = error
+dotnet_diagnostic.sa1620.severity = error
+dotnet_diagnostic.sa1621.severity = error
+dotnet_diagnostic.sa1622.severity = error
+dotnet_diagnostic.sa1623.severity = error
+dotnet_diagnostic.sa1624.severity = error
+dotnet_diagnostic.sa1625.severity = error
+dotnet_diagnostic.sa1626.severity = error
+dotnet_diagnostic.sa1627.severity = error
+dotnet_diagnostic.sa1628.severity = error
+dotnet_diagnostic.sa1629.severity = error
+dotnet_diagnostic.sa1630.severity = error
+dotnet_diagnostic.sa1631.severity = error
+dotnet_diagnostic.sa1632.severity = error
+dotnet_diagnostic.sa1633.severity = none # The file header is missing or not located at the top of the file.
+dotnet_diagnostic.sa1634.severity = error
+dotnet_diagnostic.sa1635.severity = error
+dotnet_diagnostic.sa1636.severity = error
+dotnet_diagnostic.sa1637.severity = error
+dotnet_diagnostic.sa1638.severity = error
+dotnet_diagnostic.sa1639.severity = error
+dotnet_diagnostic.sa1640.severity = error
+dotnet_diagnostic.sa1641.severity = error
+dotnet_diagnostic.sa1642.severity = error
+dotnet_diagnostic.sa1643.severity = error
+dotnet_diagnostic.sa1644.severity = error
+dotnet_diagnostic.sa1645.severity = error
+dotnet_diagnostic.sa1646.severity = error
+dotnet_diagnostic.sa1647.severity = error
+dotnet_diagnostic.sa1648.severity = error
+dotnet_diagnostic.sa1649.severity = error
+dotnet_diagnostic.sa1650.severity = error
+dotnet_diagnostic.sa1651.severity = error
+dotnet_diagnostic.sa1652.severity = error
+dotnet_diagnostic.sx1101.severity = error
+dotnet_diagnostic.sx1309.severity = error
+dotnet_diagnostic.sx1309s.severity = error
 
 # Code Analysis Rules
+dotnet_diagnostic.cs1591.severity = none # Missing XML comment for publicly visible type or member 'Type_or_Member'
 # Unnecessary call to 'Dictionary.ContainsKey(key)'
-dotnet_diagnostic.CA1853.severity = error # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca185
+dotnet_diagnostic.ca1853.severity = error # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca185
 # Prefer the IDictionary.TryGetValue(TKey, out TValue) method
-dotnet_diagnostic.CA1854.severity = error # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1854
+dotnet_diagnostic.ca1854.severity = error # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1854
+
+# 3rd party analyzer configuration
+# MoveToGlobalUsingsAnalyzer
+dotnet_diagnostic.global_usings.severity = error
+dotnet_diagnostic.global_usings.file_name = GlobalUsings.cs
+dotnet_diagnostic.global_usings.sort = true
+
+# ReSharper properties
+resharper_align_multiline_calls_chain = true
+resharper_align_multiple_declaration = true
+resharper_braces_for_dowhile = required_for_multiline
+resharper_braces_for_fixed = required_for_multiline
+resharper_braces_for_for = required_for_multiline
+resharper_braces_for_foreach = required_for_multiline
+resharper_braces_for_ifelse = required_for_multiline
+resharper_braces_for_lock = required_for_multiline
+resharper_braces_for_using = required_for_multiline
+resharper_braces_for_while = required_for_multiline
+resharper_constructor_or_destructor_body = expression_body
+resharper_csharp_wrap_after_declaration_lpar = true
+resharper_csharp_wrap_parameters_style = chop_if_long
+resharper_indent_nested_fixed_stmt = true
+resharper_indent_nested_foreach_stmt = true
+resharper_indent_nested_for_stmt = true
+resharper_indent_nested_lock_stmt = true
+resharper_indent_nested_usings_stmt = true
+resharper_indent_nested_while_stmt = true
+resharper_local_function_body = expression_body
+resharper_method_or_operator_body = expression_body
+resharper_object_creation_when_type_not_evident = target_typed
+resharper_outdent_statement_labels = true
+resharper_trailing_comma_in_multiline_lists = true
+
+# ReSharper inspection severities
+resharper_arrange_accessor_owner_body_highlighting = error
+resharper_arrange_attributes_highlighting = error
+resharper_arrange_constructor_or_destructor_body_highlighting = error
+resharper_arrange_default_value_when_type_evident_highlighting = error
+resharper_arrange_default_value_when_type_not_evident_highlighting = suggestion
+resharper_arrange_local_function_body_highlighting = error
+resharper_arrange_method_or_operator_body_highlighting = error
+resharper_arrange_null_checking_pattern_highlighting = error
+resharper_arrange_object_creation_when_type_evident_highlighting = error
+resharper_arrange_object_creation_when_type_not_evident_highlighting = suggestion
+resharper_arrange_redundant_parentheses_highlighting = error
+resharper_arrange_static_member_qualifier_highlighting = error
+resharper_arrange_trailing_comma_in_multiline_lists_highlighting = error
+resharper_arrange_var_keywords_in_deconstructing_declaration_highlighting = error
+resharper_enforce_do_while_statement_braces_highlighting = error
+resharper_enforce_fixed_statement_braces_highlighting = error
+resharper_enforce_foreach_statement_braces_highlighting = error
+resharper_enforce_for_statement_braces_highlighting = error
+resharper_enforce_if_statement_braces_highlighting = error
+resharper_enforce_lock_statement_braces_highlighting = error
+resharper_enforce_using_statement_braces_highlighting = error
+resharper_enforce_while_statement_braces_highlighting = error
+resharper_remove_redundant_braces_highlighting = error
+resharper_suggest_discard_declaration_var_style_highlighting = error
+
+# Links
+# IDE diagnostic list
+# https://github.com/dotnet/roslyn/blob/281de15d8e915793688eeac757aa4b3f08596d08/src/Analyzers/Core/Analyzers/IDEDiagnosticIds.cs#L9
+# Jetbrains R# setup index
+# https://www.jetbrains.com/help/resharper/EditorConfig_Index.html
