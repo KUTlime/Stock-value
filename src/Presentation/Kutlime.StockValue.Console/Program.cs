@@ -33,7 +33,7 @@ internal static class Program
     private static CancellationTokenSource RegisterCancellationToken()
     {
         var cancellationTokenSource = new CancellationTokenSource();
-        System.Console.CancelKeyPress += (s, e) =>
+        System.Console.CancelKeyPress += (_, e) =>
         {
             System.Console.WriteLine("Canceling...");
             cancellationTokenSource.Cancel();
