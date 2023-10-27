@@ -1,6 +1,4 @@
-﻿using Kutlime.StockValue.Application.DTOs;
-
-namespace Kutlime.StockValue.Application.Interfaces;
+﻿namespace Kutlime.StockValue.Application.Interfaces;
 
 public interface IStockProvider
 {

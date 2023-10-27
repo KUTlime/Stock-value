@@ -1,7 +1,4 @@
-﻿using Kutlime.StockValue.Application.Exceptions;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Kutlime.StockValue.DependencyInjection;
+﻿namespace Kutlime.StockValue.DependencyInjection;
 
 public class ServiceFactory
 {

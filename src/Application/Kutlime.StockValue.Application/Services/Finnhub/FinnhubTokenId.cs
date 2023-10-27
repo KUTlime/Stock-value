@@ -1,6 +1,4 @@
-﻿using Kutlime.StockValue.Application.Interfaces;
-
-namespace Kutlime.StockValue.Application.Services.Finnhub;
+﻿namespace Kutlime.StockValue.Application.Services.Finnhub;
 
 public class FinnhubTokenId : IToken
 {

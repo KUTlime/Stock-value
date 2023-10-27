@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Kutlime.StockValue.Infrastructure.DependencyInjection;
+﻿namespace Kutlime.StockValue.Infrastructure.DependencyInjection;
 
 public interface IContainer
 {

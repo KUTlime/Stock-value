@@ -1,8 +1,4 @@
-﻿using Kutlime.StockValue.Application.Interfaces;
-using Kutlime.StockValue.Application.Services.Finnhub;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Kutlime.StockValue.Infrastructure.DependencyInjection;
+﻿namespace Kutlime.StockValue.Infrastructure.DependencyInjection;
 
 public class DependencyContainer : IContainer
 {

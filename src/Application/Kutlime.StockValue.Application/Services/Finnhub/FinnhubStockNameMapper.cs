@@ -1,7 +1,4 @@
-﻿using Kutlime.StockValue.Application.Exceptions;
-using Kutlime.StockValue.Application.Interfaces;
-
-namespace Kutlime.StockValue.Application.Services.Finnhub;
+﻿namespace Kutlime.StockValue.Application.Services.Finnhub;
 
 internal class FinnhubStockNameMapper
     : IContractObjectMapper<FinnhubStockNameService.FinnhubSymbolResponse, FinnhubStockNameService.FinnhubSymbolResultContract>,

@@ -1,9 +1,4 @@
-﻿using Kutlime.StockValue.Application.DTOs;
-using Kutlime.StockValue.Application.Interfaces;
-using Kutlime.StockValue.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Kutlime.StockValue.Console;
+﻿namespace Kutlime.StockValue.Console;
 
 internal static class Program
 {

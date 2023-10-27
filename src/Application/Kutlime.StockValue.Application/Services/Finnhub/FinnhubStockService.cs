@@ -1,10 +1,4 @@
-﻿using Kutlime.StockValue.Application.DTOs;
-using Kutlime.StockValue.Application.Exceptions;
-using Kutlime.StockValue.Application.Interfaces;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace Kutlime.StockValue.Application.Services.Finnhub;
+﻿namespace Kutlime.StockValue.Application.Services.Finnhub;
 
 public class FinnhubStockService : IStockProvider
 {

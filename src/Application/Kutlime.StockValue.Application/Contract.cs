@@ -1,8 +1,4 @@
-﻿using Kutlime.StockValue.Application.Exceptions;
-using Kutlime.StockValue.Application.Interfaces;
-using System.Diagnostics.CodeAnalysis;
-
-namespace Kutlime.StockValue.Application;
+﻿namespace Kutlime.StockValue.Application;
 
 internal class Contract
 {
