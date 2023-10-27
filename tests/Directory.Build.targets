@@ -1,0 +1,14 @@
+<Project>
+
+  <PropertyGroup>
+    <ParentDirectoryBuildTargets>$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))</ParentDirectoryBuildTargets>
+  </PropertyGroup>
+
+  <Import Project="$(ParentDirectoryBuildTargets)" Condition="Exists($(ParentDirectoryBuildTargets))"/>
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+</Project>
